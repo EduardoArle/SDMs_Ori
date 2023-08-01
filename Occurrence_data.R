@@ -17,5 +17,5 @@ occ_sp <- st_as_sf(occ, coords = c('cordinate.lon', 'cordinate.lat'),
                       crs = st_crs(ecoregions))
 
 # visualise the data
-plot(st_geometry(ecoregions), col = 'azure') #plot region
-plot(occ_sp, add =T, pch = 19, col = 'red') #plot points
+plot(st_geometry(ecoregions), col = 'azure', bg = 'khaki1') #plot region
+plot(occ_sp, add =T, pch = 21, bg = 'red', col = 'black', cex = 0.7) #plot points

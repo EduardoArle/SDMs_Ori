@@ -4,7 +4,7 @@ library(raster)
 # list relevant WDs
 wd_vars <- "/Users/carloseduardoaribeiro/Documents/Collaborations/Ori/Variables"
 wd_regional <- "/Users/carloseduardoaribeiro/Documents/Collaborations/Ori/Local variables"
-wd_regional_resampled <- ""
+wd_regional_resampled <- "/Users/carloseduardoaribeiro/Documents/Collaborations/Ori/Local variables resampled"
 
 # load world variable layers
 setwd(wd_vars)
@@ -30,9 +30,5 @@ for(i in 1:nlayers(stack_all_cropped))
 }
 
 
-stack_all <- t
-stack_all_cropped <- t2
-
-?writeRaster
 
 

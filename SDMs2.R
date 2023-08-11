@@ -23,3 +23,8 @@ lat_1[] <- lat_values
 
 #reset original NAs 
 lat_1[which(is.na(depth[]))] <- NA
+
+#write raster
+writeRaster(lat_1, filename = 'Latitude.tif', format = 'GTiff')
+
+

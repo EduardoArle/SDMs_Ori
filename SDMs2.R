@@ -3,6 +3,7 @@ library(raster); library(sf)
 
 # list relevant WDs
 wd_regional <- "/Users/carloseduardoaribeiro/Documents/Collaborations/Ori/Local variables"
+wd_shps <- '/Users/carloseduardoaribeiro/Documents/Collaborations/Ori/Shapefile'
 
 # load depth layer
 setwd(wd_regional)
@@ -28,3 +29,12 @@ lat_1[which(is.na(depth[]))] <- NA
 writeRaster(lat_1, filename = 'Latitude.tif', format = 'GTiff')
 
 
+## DISTANCE TO THE COAST
+
+#duplicate the raster layer we use as base
+dist_1 <- depth
+
+#load shp Israeli coast
+shp_coast <-st_read('Shore_rtg_200208', dsn = wd_shps)
+
+plot(shp_coast)

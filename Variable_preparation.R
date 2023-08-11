@@ -10,7 +10,7 @@ wd_regional_resampled <- "/Users/carloseduardoaribeiro/Documents/Collaborations/
 setwd(wd_vars)
 vars <- stack(lapply(list.files(), raster))
 
-# load world variable layers
+# load regional variable layers
 setwd(wd_regional)
 depth <- raster('coast_raster_depth.tif')
 

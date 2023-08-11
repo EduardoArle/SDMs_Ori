@@ -5,6 +5,7 @@ library(data.table)
 # list relevant WDs
 wd_regional_resampled <- "/Users/carloseduardoaribeiro/Documents/Collaborations/Ori/Local variables resampled"
 wd_occ <- "/Users/carloseduardoaribeiro/Documents/Collaborations/Ori/Occurrence"
+wd_results <- "/Users/carloseduardoaribeiro/Documents/Collaborations/Ori/Results"
 
 # load resampled variable layers
 setwd(wd_regional_resampled)
@@ -25,6 +26,10 @@ vals <- extract(vars, occ_sp)
 #make a mirrored matrix of correlation
 correl <- cor(vals, use = 'complete.obs')
 
+#save
+setwd(wd_results)
+write.csv(correl, 'Correl_matrix.csv')
+
 #check variance inflation factor (VIF) to select which are not too correlated
 vif <- vifcor(vals, th = 0.7)
 
@@ -36,9 +41,12 @@ vals_2 <-  vals[,-c(7,9)]
 #check variance inflation factor (VIF) to select which are not too correlated
 vif_2 <- vifcor(vals_2, th = 0.7)
 
+#save
+setwd(wd_results)
+write.csv(vif_2@results, 'Selected_vars_07.csv')
+
 #make an object with only variables we have selectes
 vars_sel <- vars[[which(names(vars) %in% vif_2@results$Variables)]]
-
 
 plot(vars_sel)
 
@@ -66,7 +74,10 @@ myBiomodModelOut <- BIOMOD_Modeling(bm.format = myBiomodData,
 
 
 # Get evaluation scores & variables importance
-get_evaluations(myBiomodModelOut)
+evals <- get_evaluations(myBiomodModelOut)
+
+setwd(wd_results)
+write.csv(evals, 'Model_evaluations.csv')
 
 myBiomodProj <- BIOMOD_Projection(bm.mod = myBiomodModelOut,
                                   proj.name ='current',
